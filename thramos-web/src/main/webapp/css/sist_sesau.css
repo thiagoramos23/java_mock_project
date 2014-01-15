@@ -1,0 +1,287 @@
+@charset "utf-8";
+/* CSS Document */
+html,body {
+	margin: 0px;
+	padding: 0px;
+	font-family: Kalinga;
+}
+
+#cinta {
+	min-width: 850px;
+}
+
+#topo {
+	height: 57px;
+	background-image: url(../imagens/bg_topo_azul.png);
+	background-repeat: repeat-x;
+	z-index: 1000;
+	position: fixed;
+	top: 0px;
+	width: 100%;
+	padding-left: 35px;
+	min-width: 850px;
+}
+
+#topo_bg2 {
+	background-image: url(../imagens/bg2_topo_azul.jpg);
+	background-position: top right;
+	background-repeat: no-repeat;
+}
+
+/*
+#topo {
+	height: 57px;
+	background-image: url(../imagens/bg_topo.png);
+	background-repeat: repeat-x;
+	z-index: 1000;
+	position: fixed;
+	top: 0px;
+	width: 100%;
+	padding-left: 35px;
+	min-width: 850px;
+}
+ #topo_bg2 {
+	background-image: url(../imagens/bg2_topo.jpg);
+	background-position: top right;
+	background-repeat: no-repeat;
+} */
+#logo_sesau {
+	height: 57px;
+	/* background-image: url(../imagens/sesau_logo.png); */
+	background-repeat: no-repeat;
+	padding-right: 35px;
+}
+
+#nome_secretaria {
+	font-size: 24px;
+	color: #8b978f;
+	text-align: center;
+	padding-top: 27px;
+}
+
+#tituloPagina {
+	height: 35px;
+	margin-right: 35px; margin-bottom : 35px;
+	font-size: 24px;
+	font-weight: bold;
+	color: #357bae;
+	border-bottom: 1px solid #e1e2e7;
+	margin-bottom: 35px;
+}
+
+#nome_sist {
+	text-align: center;
+	font-size: 20px;
+	color: #333333;
+	margin-top: 65px;
+}
+
+#nome_usuario {
+	text-align: right;
+	font-size: 10px;
+	color: #FFFFFF;
+	padding-top: 15px;
+	margin-right: 25px;
+}
+
+.ui-button-icon-left.ui-icon.usuarioLogado{
+	background-image: url(../imagens/usuario.jpg);
+}
+
+#menu_bar {
+	background-image: url(../imagens/menu_seta.png);
+	background-repeat: no-repeat;
+	height: 20px;
+	padding-left: 65px;
+	padding-bottom: 10px;
+}
+
+#baixo {
+	min-height: 300px;
+	margin-left: 10px;
+	margin-right: 10px;
+	padding-left: 27px;
+	/*background-image: url(../imagens/shdw_esq.jpg);*/
+	background-position: top left;
+	background-repeat: no-repeat;
+	padding-bottom: 30px;
+}
+
+#baixo2 {
+	padding-right: 25px;
+	/*background-image: url(../imagens/shdw_dir.jpg);*/
+	background-position: top right;
+	background-repeat: no-repeat;
+	padding-bottom: 30px;
+}
+
+#baixo3 {
+	/*background-image: url(../imagens/baixo_bg.jpg);*/
+	background-repeat: repeat-x;
+	background-position: top;
+	background-color: #f7f7f7;
+	border-bottom: 1px solid #e1e2e7;
+	
+}
+
+#conteudo {
+	padding: 20px;
+	padding-left: 40px;
+	padding-right: 40px;
+	min-height: 300px;
+	padding-bottom: 40px;
+}
+
+#conteudo_login {
+	background-color: #f7f7f7;
+	padding: 15px;
+	min-height: 300px;
+}
+
+#rodape {
+	background-color: #f7f7f7;
+	background-image: url(../imagens/indra_logo.jpg);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+	height: 30px;
+	margin-bottom: 50px;
+}
+
+#bg_login {
+/*	background-image: url(../imagens/bg_login.jpg); */
+	background-repeat: no-repeat;
+	background-position: left top;
+	margin: auto;
+	width: 550px;
+	height: 330px;
+	padding-top: 50px;
+}
+#login{
+width:550px;
+margin:auto;
+}
+#form_login{
+float:right;
+width:200px;
+border-left: solid 1px #A5C1DE;
+padding-left:10px;
+height:180px;
+padding-top:10px;
+}
+#img_login{
+float:left;
+width:300px;
+}
+
+#erro_conteudo{
+background-color:#DEE4ED;
+padding:20px;
+min-height:50px;
+width:50%;
+margin-left:20px;
+}
+#erro_cabecalho{
+background-image:url(triangulo.png);
+background-position:bottom left;
+background-repeat:no-repeat;
+min-height:45px;
+width:50%;
+margin-left:20px;
+}
+#sobe{
+clear:both;
+}
+
+/*_____________________________________________________________________________*/
+.Label{
+font-size:11px;
+font-weight:bold;
+color: #357bae;
+}
+
+.textoNormal {
+	font-size: 14px;
+}
+
+.textoTitulo {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.caixa3d {
+	border-left: 1px solid #B4B4B4;
+	border-top: 1px solid #B4B4B4;
+	border-right: 1px solid #FFFFFF;
+	border-bottom: 1px solid #FFFFFF;
+	background-color: #E9E9E9;
+	padding: 10px;
+	margin: auto;
+	text-align: right;
+}
+
+.textoPequeno {
+	font-size: 11px;
+}
+
+.textoPequeno a {
+	font-size: 11px;
+	text-decoration: none;
+	color: #000000;
+}
+
+.textoPequeno a:hover {
+	font-size: 11px;
+	text-decoration: underline;
+	color: #990000;
+}
+
+.consultaTable {
+	border: solid 1px #c9c9c9;
+	padding: 5px;
+}
+.textoAlerta{
+color:#990000;
+font-weight:bold;
+}
+.textoMensagem{
+font-style:italic;
+}
+.bt{
+	border:none;
+	border-bottom:solid 1px #cccccc;
+	border-right:solid 1px #cccccc;
+	font:"Trebuchet MS";
+	color:#285091;
+	height:20px;
+	width:90px;
+	font-size:11px;
+	background-image: url(../imagens/setinha.jpg);
+	background-repeat:no-repeat;
+	background-color:#E3F1FE;
+	background-position:8px;
+}
+.imputField{
+	background-image:url(../imagens/bgimput.jpg);
+	height:23px;
+	border-left:1px solid #D0DADF;
+	border-right:1px solid #D0DADF;
+	border-top:none;
+	border-bottom:none;
+}
+/*_______________________________________________________*/
+.ui-datatable .ui-datatable-data .even-row td {
+	/*background-color:#EEDD82;*/
+	background-color: #FFFFCC;
+}
+
+.ui-datatable .ui-datatable-data .odd-row td {
+	/*background-color:#FFFACD;*/
+}
+
+.ui-growl-image{
+	background: url(../imagens/icones_alerta.png) no-repeat;
+}
+
+.ui-growl-image-info{
+	background-position: 0 -264px;
+}	

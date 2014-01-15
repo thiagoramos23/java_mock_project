@@ -1,0 +1,9 @@
+package com.thramos.construtor.service;
+
+import java.util.List;
+
+import com.thramos.framework.service.Service;
+import com.thramos.model.atividade.Atividade;
+
+public interface AtividadeService extends Service<Atividade>{
+}

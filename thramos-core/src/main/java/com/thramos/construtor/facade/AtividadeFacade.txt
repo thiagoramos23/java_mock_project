@@ -1,0 +1,8 @@
+package com.thramos.construtor.facade;
+
+import com.thramos.framework.facade.Facade;
+import com.thramos.model.atividade.Atividade;
+
+public interface AtividadeFacade extends Facade<Atividade>{
+
+}

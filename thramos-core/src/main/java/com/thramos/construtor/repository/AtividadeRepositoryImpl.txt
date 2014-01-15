@@ -1,0 +1,14 @@
+package com.thramos.construtor.repository;
+
+import java.util.List;
+
+import org.springframework.stereotype.Component;
+
+import com.thramos.model.atividade.Atividade;
+import com.thramos.repository.AbstractRepository;
+
+@Component
+@SuppressWarnings("unchecked")
+public class AtividadeRepositoryImpl extends AbstractRepository<Atividade> implements AtividadeRepository{
+
+}

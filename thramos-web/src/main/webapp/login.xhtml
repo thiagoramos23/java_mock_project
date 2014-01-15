@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/paginas/template/layout_login.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:componentes="http://java.sun.com/jsf/composite/componentes">
+
+	<ui:param name="bean" value="#{usuarioBean}" />
+	<ui:define name="pagina">
+		<div id="tituloPagina">
+			<h:outputText value="Login" />
+		</div>
+
+		<p:fieldset legend="Dados do Usuário" toggleable="false"
+			toggleSpeed="500" widgetVar="trocaSenha" style="width:40%;">
+			<h:panelGrid columns="1" style="width:30%">
+				<h:form id="loginForm" prependId="false">
+					<h:panelGrid columns="1" style="width:100%">
+						<h:outputLabel value="Login: " class="Label" />
+						<p:inputText id="j_username" size="70" required="true"/>
+						<h:message for="j_username" display="text" style="color:red" message="O login é obrigatório"/>
+						<h:outputLabel value="Senha: " class="Label" />
+						<p:password id="j_password"
+							label="Senha" promptLabel="Digite sua senha" size="70" required="true"/>
+						<h:message for="j_password" display="text" style="color:red" message="A senha é obrigatória"/>
+					</h:panelGrid>
+					<h:panelGrid columns="2">
+						<p:commandButton value="Entrar" type="submit" 
+							action="#{loginBean.doLogin}" ajax="false"/>
+					</h:panelGrid>
+	            </h:form>
+			</h:panelGrid>
+		</p:fieldset>
+	</ui:define>
+
+</ui:composition>
+
+
+
+

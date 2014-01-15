@@ -1,0 +1,133 @@
+@charset "utf-8";
+
+/* CSS Document */
+html {
+	height: 100%;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: #EAECEB;
+	min-width: 800px;
+	margin: 0px;
+	padding: 0px;
+}
+
+#tela {
+	font-size: 11px;
+}
+#telaDialogo {
+	font-size: 11px;
+}
+
+#bg {
+	/* novo 
+	background-image:url(../imagens/bg.jpg);*/
+	background-position:top;
+	background-repeat:repeat-x;
+	/* fim-novo */
+}
+
+#topo {
+	background-image: url(../imagens/clinicfacil_02.jpg);
+	background-position: top;
+	background-repeat: repeat-x;
+	height: 150px;
+}
+
+#baixo {
+	min-height: 300px;
+	padding: 20px;
+}
+
+#bgcolor {
+	background-color: #FFFFFF;
+}
+
+#rodape {
+	background-image: url(../imagens/bg_rodape.jpg);
+	background-repeat: repeat-x;
+	height: 80px;
+	padding: 15px;
+	font-size: 10px;
+	color:#666666;
+}
+
+.logotipo {
+	background-image: url(../imagens/logotipo.png);
+	background-repeat: no-repeat;
+}
+#logo_cf{
+	margin-top:100px;
+	margin-bottom:5px;
+	padding-right:40px;
+	text-align:right;
+}
+#login{
+	/* background-image:url(../imagens/bg_index.jpg); */
+	background-repeat:repeat-x;
+	height:209px;
+}
+#login_painel{
+	background-image:url(../imagens/bg_login.jpg);
+	background-repeat:no-repeat;
+	height:159px;
+	width:350px;
+	padding-top:50px;
+	padding-left:40px;
+}
+
+.menu {
+	color: #2F6791;
+	text-transform: capitalize;
+}
+
+a.menu:link {
+	color: #2F6791;
+	padding: 3px;
+	text-decoration: none;
+}
+
+a.menu:hover {
+	color: #FFFFFF;
+	padding: 3px;
+	text-decoration: none;
+	background-color: #2F6791
+}
+
+.boasvindas {
+	color: #2F6791;
+	font-size: 12px;
+}
+
+.validade {
+	font-size: 11px;
+	color: #990000;
+}
+
+.textoNormal {
+	font-size: 14px;
+	color: #333333;
+}
+
+.textoLabel{
+	font-size:12px;
+	color:#333333;
+	font-weight:bold;
+	font-style:italic;
+}
+
+.Titulo_caixa {
+	color:#648FB0;
+	text-transform:capitalize;
+	font-weight:bold;
+	font-size:24px;
+}
+
+#caixa{
+	padding:8px;
+	margin:auto;
+	width:95%;
+	background-color:#ECEBE8;
+	min-width:800px;
+}

@@ -1,0 +1,5 @@
+package com.thramos.construtor.web.consulta;
+
+public interface AtividadeConsulta {
+
+}

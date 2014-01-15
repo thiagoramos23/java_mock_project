@@ -1,0 +1,64 @@
+package com.thramos.construtor.web.bean;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.faces.bean.ManagedBean;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+import com.thramos.facade.atividade.AtividadeFacade;
+import com.thramos.framework.consulta.restricao.Restricoes;
+import com.thramos.framework.facade.Facade;
+import com.thramos.framework.util.VerificadorUtil;
+import com.thramos.model.atividade.Atividade;
+import com.thramos.sessao.obra.ObraSessionManager;
+import com.thramos.web.consulta.atividade.AtividadeConsulta;
+import com.thramos.web.framework.combomodel.ItemCombo;
+import com.thramos.web.generico.AbstractBean;
+
+@Component
+@ManagedBean
+@Scope("view")
+public class AtividadeBean extends AbstractBean<Atividade>{
+
+	private AtividadeFacade atividadeFacade;
+	private AtividadeConsulta consulta;
+	
+	private ObraSessionManager obraSessionManager;
+	
+	@Autowired
+	public AtividadeBean(AtividadeFacade atividadeFacade, AtividadeConsulta consulta) {
+		this.atividadeFacade = atividadeFacade;
+		this.consulta = consulta;
+	}
+	
+	public void fecharDetalhe() {
+		setDetalharVisivel(false);
+		limparEntidade();
+	}
+		
+	@Override
+	protected void limparEntidade() {
+		setEntidade(new Atividade());
+	}
+	
+	@Override
+	public Atividade getEntidade() {
+		if(VerificadorUtil.estaNulo(entidade)) {
+			entidade = new Atividade();
+		}
+		return entidade;
+	}
+	
+	@Override
+	protected Facade<Atividade> getFacade() {
+		return this.atividadeFacade;
+	}
+	
+	public AtividadeConsulta getConsulta() {
+		return consulta;
+	}
+}

@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/paginas/template/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:param name="bean" value="#{pessoaBean}" />
+
+	<ui:define name="pagina">
+		<div id="tituloPagina">
+			<h:outputText value="Pessoas" />
+		</div>
+		<p:fieldset id="fieldSetConsulta" legend="Consultar" toggleable="true"
+			toggleSpeed="500" widgetVar="consulta">
+			<p:toolbar id="toolBarConsultaPadrao">
+				<p:toolbarGroup>
+					<h:panelGrid columns="4" style="vertical-align: middle;">
+						<h:panelGroup>
+							<p:commandButton icon="ui-icon-disk"
+								actionListener="#{bean.novo()}" update=":panelGroupPersistir"
+								value="Novo" oncomplete="consulta.toggle()" />
+						</h:panelGroup>
+					</h:panelGrid>
+				</p:toolbarGroup>
+			</p:toolbar>
+			<br />
+			<p:dataTable id="entidadeTabela" title="entidadeTabela"
+				name="consultaLazy" var="entidade" value="#{bean.consulta}"
+				paginator="true" rows="5" width="80px"
+				paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+				rowsPerPageTemplate="5,10,15" lazy="true"
+				paginatorAlwaysVisible="false"
+				emptyMessage="Nenhum registro encontrado"
+				rowStyleClass="#{empty linha or linha mod 2 ne 0 ? 'even-row' : 'odd-row'}"
+				rowIndexVar="linha" style="font-size: 10px;">
+
+				<p:column headerText="Nome">
+					<h:outputText value="#{entidade.nome}" style="width: 20%" />
+				</p:column>
+
+				<p:column headerText="CPF">
+					<h:outputText value="#{entidade.cpf}" style="width: 20%" />
+				</p:column>
+
+				<p:column headerText="RG">
+					<h:outputText value="#{entidade.rg}" style="width: 20%" />
+				</p:column>
+
+				<p:column headerText="Sexo">
+					<h:outputText value="Masculino" style="width: 20%"
+						rendered="#{entidade.sexo == 'M'}" />
+					<h:outputText value="Feminino" style="width: 20%"
+						rendered="#{entidade.sexo == 'F'}" />
+				</p:column>
+
+				<p:column
+					style="text-align:center;background-color:#F0F0F0;width: 10%">
+					<p:commandButton icon="ui-icon-triangle-1-e"
+						actionListener="#{bean.setSelecionar(entidade)}"
+						update=":#{p:component('formularioMensagens')}, :panelGroupDetalhe"
+						value="Detalhar" oncomplete="consulta.toggle()" />
+				</p:column>
+				<p:column
+					style="text-align:center;background-color:#F0F0F0;width: 10%">
+					<p:commandButton icon="ui-icon-disk"
+						actionListener="#{bean.setSelecionarAlterar(entidade)}"
+						update=":#{p:component('formularioMensagens')}, :panelGroupPersistir"
+						value="Alterar" oncomplete="consulta.toggle()" />
+				</p:column>
+				<p:column
+					style="text-align:center;background-color:#F0F0F0;width: 10%">
+					<p:commandButton icon="ui-icon-disk"
+						actionListener="#{bean.excluir(entidade)}"
+						update=":#{p:component('formularioMensagens')}, :fieldSetConsulta"
+						value="Excluir" />
+				</p:column>
+
+			</p:dataTable>
+		</p:fieldset>
+
+		<br />
+
+		<h:panelGroup id="panelGroupPersistir">
+			<p:fieldset id="fieldSetEntidadePersistir"
+				legend="Cadastrar / Alterar" toggleable="true" toggleSpeed="500"
+				collapsed="false" widgetVar="fieldsetPersistir"
+				rendered="#{bean.cadastrarVisivel}">
+				<h:form id="formularioEntidadePersistir" prependId="false" enctype="multipart/form-data">
+					<h:panelGrid columns="1" style="float: left; padding: 3px">
+						<h:outputLabel value="Tipo Pessoa: " class="Label" />
+						<p:selectOneMenu value="#{bean.entidade.tipoPessoa}" effect="fade"
+							style="width: 200px">
+							<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
+							<f:selectItems value="#{bean.tipoPessoaValues}" />
+						</p:selectOneMenu>
+					</h:panelGrid>
+
+					<h:panelGrid id="panelGridGeradorCamposPersistir" columns="1"
+						cellpadding="0" cellspacing="10" width="100%">
+						<h:panelGrid columns="4" cellpadding="0">
+							<h:panelGrid columns="1" style="float: left; padding: 3px">
+								<h:outputLabel value="Nome: " class="Label" />
+								<p:inputText value="#{bean.entidade.nome}" size="50" />
+							</h:panelGrid>
+
+							<h:panelGrid columns="1" style="float: left; padding: 3px">
+								<h:outputLabel value="CPF: " class="Label" />
+								<p:inputMask value="#{bean.entidade.cpf}" mask="999.999.999-99" />
+							</h:panelGrid>
+
+							<h:panelGrid columns="1" style="float: left; padding: 3px">
+								<h:outputLabel value="RG: " class="Label" />
+								<p:inputText value="#{bean.entidade.rg}"/>
+							</h:panelGrid>
+
+							<h:panelGrid columns="1" style="float: left; padding: 3px">
+								<h:outputLabel value="Email: " class="Label" />
+								<p:inputText value="#{bean.entidade.email}" size="50" />
+							</h:panelGrid>
+
+							<h:panelGrid columns="1" style="float: left; padding: 3px">
+								<h:outputLabel value="Sexo: " class="Label" />
+								<p:selectOneMenu value="#{bean.entidade.sexo}" effect="fade"
+									style="width: 200px">
+									<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
+									<f:selectItems value="#{bean.sexoValues}" />
+								</p:selectOneMenu>
+							</h:panelGrid>
+						</h:panelGrid>
+						
+						<p:fieldset id="fieldSetEntidadeEndereco" legend="Endereço"
+							toggleable="false" widgetVar="fieldsetEndereco">
+
+							<h:panelGrid id="panelGridGeradorCamposEndereco" columns="5"
+								cellpadding="0" width="100%">
+
+								<h:panelGrid columns="1" style="float: left; padding: 3px">
+									<h:outputLabel value="Estado: " class="Label" />
+									<p:selectOneMenu value="#{bean.entidade.endereco.estado}">
+										<f:selectItems value="#{bean.listaEstados}"/>
+									</p:selectOneMenu>
+								</h:panelGrid>
+								
+								<h:panelGrid columns="1" style="float: left; padding: 3px">
+									<h:outputLabel value="CEP: " class="Label" />
+									<p:inputMask value="#{bean.entidade.endereco.cep}"
+										mask="99999-999" />
+								</h:panelGrid>
+
+								<h:panelGrid columns="1" style="float: left; padding: 3px">
+									<h:outputLabel value="Avenida / Rua: " class="Label" />
+									<p:inputText value="#{bean.entidade.endereco.endereco}" size="50"/>
+								</h:panelGrid>
+
+								<h:panelGrid columns="1" style="float: left; padding: 3px">
+									<h:outputLabel value="Bairro: " class="Label" />
+									<p:inputText value="#{bean.entidade.endereco.bairro}" />
+								</h:panelGrid>
+
+								<h:panelGrid columns="1" style="float: left; padding: 3px">
+									<h:outputLabel value="Cidade: " class="Label" />
+									<p:inputText value="#{bean.entidade.endereco.cidade}" />
+								</h:panelGrid>
+
+							</h:panelGrid>
+						</p:fieldset>
+
+						<h:panelGrid id="panelGridGeradorCamposPersistir2" columns="5"
+							cellpadding="0" cellspacing="10" width="100%">
+
+							<h:panelGrid columns="1" style="float: left; padding: 3px">
+								<h:outputLabel value="Celular: " class="Label" />
+								<p:inputText value="#{bean.entidade.telefoneCelular}" />
+							</h:panelGrid>							
+						</h:panelGrid>
+
+						<h:panelGrid columns="1">
+							<p:commandButton id="btn_fechar_persistir_cadastrar"
+								icon="ui-icon-check" value="Cadastrar"
+								action="#{bean.cadastrar(bean.entidade)}"
+								update=":#{p:component('formularioMensagens')}, :panelGroupDetalhe, :panelGroupPersistir, :fieldSetConsulta"
+								rendered="#{bean.entidade.id == null}" 
+								ajax="false"/>
+							<p:commandButton id="btn_fechar_persistir_alterar"
+								icon="ui-icon-check" value="Alterar"
+								action="#{bean.alterar(bean.entidade)}"
+								update=":#{p:component('formularioMensagens')}, :panelGroupDetalhe, :panelGroupPersistir, :fieldSetConsulta"
+								rendered="#{bean.entidade.id != null}" 
+								ajax="false"/>
+	
+						</h:panelGrid>
+					</h:panelGrid>
+				</h:form>
+			</p:fieldset>
+			<p:spacer height="20" />
+		</h:panelGroup>
+
+		<h:panelGroup id="panelGroupDetalhe">
+			<p:fieldset id="fieldSetEntidadeDetalhe" legend="Detalhar"
+				toggleable="true" toggleSpeed="500" collapsed="false"
+				widgetVar="fieldsetDetalhar" rendered="#{bean.detalharVisivel}">
+				<h:form id="formularioEntidadeDetalheDetalhar" prependId="false">
+					<h:panelGrid id="panelGridGeradorCamposDetalhe" columns="1"
+						cellpadding="0" cellspacing="10" width="100%">
+						
+						<h:panelGrid id="panelGridCampos" columns="4"
+								cellpadding="0" cellspacing="10" width="100%">
+							<h:panelGrid columns="1" style="float: left; padding: 3px">
+								<h:outputLabel value="Tipo Pessoa: " class="Label" />
+								<h:outputLabel value="#{bean.entidade.tipoPessoa.value}"/>
+							</h:panelGrid>
+	
+							<h:panelGrid columns="1" style="float: left; padding: 3px">
+								<h:outputLabel value="Nome: " class="Label" />
+								<h:outputLabel value="#{bean.entidade.nome}"/>
+							</h:panelGrid>
+															
+							<h:panelGrid columns="1" style="float: left; padding: 3px">
+								<h:outputLabel value="CPF: " class="Label" />
+								<h:outputLabel value="#{bean.entidade.cpf}"/>
+							</h:panelGrid>
+	
+							<h:panelGrid columns="1" style="float: left; padding: 3px">
+								<h:outputLabel value="RG: " class="Label" />
+								<h:outputLabel value="#{bean.entidade.rg}"/>
+							</h:panelGrid>
+								
+							<h:panelGrid columns="1" style="float: left; padding: 3px">
+								<h:outputLabel value="Sexo: " class="Label" />
+								<h:outputLabel value="#{bean.entidade.sexo.descricao}"/>
+							</h:panelGrid>
+							
+						</h:panelGrid>
+						<p:fieldset id="fieldSetEntidadeEnderecoDetalhar" legend="Endereço"
+							toggleable="false" widgetVar="fieldsetEnderecoDetalhar">
+							<h:panelGrid id="panelGridGeradorCamposEnderecoDetalhar" columns="5"
+								cellpadding="0" width="100%">
+								
+								<h:panelGrid columns="1" style="float: left; padding: 3px">
+									<h:outputLabel value="CEP: " class="Label" />
+									<h:outputLabel value="#{bean.entidade.endereco.cep}"/>
+								</h:panelGrid>
+	
+								<h:panelGrid columns="1" style="float: left; padding: 3px">
+									<h:outputLabel value="Avenida / Rua: " class="Label" />
+									<h:outputLabel value="#{bean.entidade.endereco.endereco}"/>
+								</h:panelGrid>
+	
+								<h:panelGrid columns="1" style="float: left; padding: 3px">
+									<h:outputLabel value="Bairro: " class="Label" />
+									<h:outputLabel value="#{bean.entidade.endereco.bairro}"/>
+								</h:panelGrid>
+	
+								<h:panelGrid columns="1" style="float: left; padding: 3px">
+									<h:outputLabel value="Cidade: " class="Label" />
+									<h:outputLabel value="#{bean.entidade.endereco.cidade}"/>
+								</h:panelGrid>
+	
+								<h:panelGrid columns="1" style="float: left; padding: 3px">
+									<h:outputLabel value="Estado: " class="Label" />
+									<h:outputLabel value="#{bean.entidade.endereco.estado}"/>
+								</h:panelGrid>
+							</h:panelGrid>
+						</p:fieldset>
+						
+						<h:panelGrid columns="1" cellpadding="0" cellspacing="10" width="100%">
+							<h:panelGrid id="panelGridGeradorCamposDetalhar2" columns="5"
+								cellpadding="0" cellspacing="10" width="100%">
+	
+								<h:panelGrid columns="1" style="float: left; padding: 3px">
+									<h:outputLabel value="Celular: " class="Label" />
+									<h:outputLabel value="#{bean.entidade.telefoneCelular}" />
+								</h:panelGrid>
+	
+							</h:panelGrid>
+						</h:panelGrid>
+						<h:panelGrid columns="1">
+							<p:commandButton id="btn_fechar_detalhe" icon="ui-icon-close"
+								value="Fechar" actionListener="#{bean.fecharDetalhe()}"
+								update=":panelGroupDetalhe, :fieldSetConsulta" />
+						</h:panelGrid>
+					</h:panelGrid>
+				</h:form>
+			</p:fieldset>
+			<p:spacer height="20" />
+		</h:panelGroup>
+	</ui:define>
+</ui:composition>

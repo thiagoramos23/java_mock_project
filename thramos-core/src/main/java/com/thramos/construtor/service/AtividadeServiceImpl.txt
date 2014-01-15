@@ -1,0 +1,30 @@
+package com.thramos.construtor.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.thramos.framework.service.impl.AbstractService;
+import com.thramos.framework.validador.Validador;
+import com.thramos.model.atividade.Atividade;
+import com.thramos.repository.Repository;
+import com.thramos.repository.atividade.AtividadeRepository;
+
+@Component
+public class AtividadeServiceImpl extends AbstractService<Atividade> implements AtividadeService{
+
+	private AtividadeRepository atividadeRepository;
+
+	@Autowired
+	public AtividadeServiceImpl(Validador validador, AtividadeRepository atividadeRepository) {
+		super(validador);
+		this.atividadeRepository = atividadeRepository;
+	}
+
+	@Override
+	protected Repository<Atividade> getRepository() {
+		return this.atividadeRepository;
+	}
+
+}

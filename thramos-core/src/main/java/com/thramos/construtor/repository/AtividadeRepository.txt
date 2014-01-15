@@ -1,0 +1,10 @@
+package com.thramos.construtor.repository;
+
+import java.util.List;
+
+import com.thramos.model.atividade.Atividade;
+import com.thramos.repository.Repository;
+
+public interface AtividadeRepository extends Repository<Atividade>{
+
+}
